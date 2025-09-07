@@ -1,0 +1,32 @@
+{
+  "name": "youtube-search-enter-fix",
+  "version": "1.0.0",
+  "description": "Firefox extension that fixes YouTube search by making Enter key properly trigger search",
+  "main": "content.js",
+  "scripts": {
+    "build": "npm run clean && npm run package",
+    "clean": "rm -f youtube-search-enter-fix.zip",
+    "package": "zip -r youtube-search-enter-fix.zip . -x '*.git*' -x 'node_modules/*' -x '*.zip' -x '.DS_Store' -x 'icons/generate-icons.sh' -x 'icons/icon.svg' -x 'package*.json'",
+    "generate-icons": "cd icons && ./generate-icons.sh"
+  },
+  "keywords": [
+    "firefox",
+    "extension",
+    "youtube",
+    "search",
+    "productivity"
+  ],
+  "author": "Akshat Baranwal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkshatBaranwal/youtube-search-enter-fix.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AkshatBaranwal/youtube-search-enter-fix/issues"
+  },
+  "homepage": "https://github.com/AkshatBaranwal/youtube-search-enter-fix#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

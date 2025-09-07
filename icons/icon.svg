@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#FF0000"/>
+  
+  <!-- Search icon -->
+  <g transform="translate(32, 32)">
+    <!-- Search circle -->
+    <circle cx="28" cy="28" r="18" fill="none" stroke="white" stroke-width="4"/>
+    <!-- Search handle -->
+    <line x1="40" y1="40" x2="54" y2="54" stroke="white" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Enter key symbol -->
+  <g transform="translate(64, 45)">
+    <path d="M 25 10 L 25 20 L 5 20" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 10 15 L 5 20 L 10 25" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
