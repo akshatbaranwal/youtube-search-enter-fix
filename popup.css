@@ -1,0 +1,56 @@
+body {
+  width: 300px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  min-height: 200px;
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  margin: 10px 0;
+}
+
+#clickMe {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  background: white;
+  color: #667eea;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#clickMe:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#clickMe:active {
+  transform: translateY(0);
+}
+
+#message {
+  font-size: 18px;
+  font-weight: bold;
+  min-height: 24px;
+  transition: opacity 0.3s ease;
+}

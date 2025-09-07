@@ -1,0 +1,40 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Search Enter Fix",
+  "version": "1.0.0",
+  "description": "Fixes YouTube search by making the Enter key properly trigger search instead of selecting autocomplete suggestions.",
+  
+  "author": "Your Name",
+  "homepage_url": "https://github.com/yourusername/youtube-search-enter-fix",
+  
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://www.youtube.com/*",
+        "*://youtube.com/*",
+        "*://m.youtube.com/*",
+        "*://www.m.youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+
+  "permissions": [],
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "youtube-search-enter-fix@yourdomain.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}
