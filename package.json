@@ -1,20 +1,27 @@
 {
   "name": "youtube-search-enter-fix",
   "version": "1.0.0",
-  "description": "Firefox extension that fixes YouTube search by making Enter key properly trigger search",
-  "main": "content.js",
+  "description": "Browser extension that fixes YouTube search by making Enter key properly trigger search (Firefox, Chrome, Edge)",
+  "main": "src/core/content.js",
   "scripts": {
-    "build": "npm run clean && npm run package",
-    "clean": "rm -f youtube-search-enter-fix.zip",
-    "package": "zip -r youtube-search-enter-fix.zip . -x '*.git*' -x 'node_modules/*' -x '*.zip' -x '.DS_Store' -x 'icons/generate-icons.sh' -x 'icons/icon.svg' -x 'package*.json'",
-    "generate-icons": "cd icons && ./generate-icons.sh"
+    "build": "node scripts/build.js all",
+    "build:firefox": "node scripts/build.js firefox",
+    "build:chrome": "node scripts/build.js chrome",
+    "build:edge": "node scripts/build.js edge",
+    "watch": "node scripts/build.js watch",
+    "clean": "rm -rf dist",
+    "generate-icons": "cd src/assets/icons && ./generate-icons.sh"
   },
   "keywords": [
     "firefox",
-    "extension",
+    "chrome",
+    "edge",
+    "browser-extension",
+    "webextension",
     "youtube",
     "search",
-    "productivity"
+    "productivity",
+    "cross-browser"
   ],
   "author": "Akshat Baranwal",
   "license": "MIT",
@@ -28,5 +35,8 @@
   "homepage": "https://github.com/AkshatBaranwal/youtube-search-enter-fix#readme",
   "engines": {
     "node": ">=14.0.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3"
   }
 }

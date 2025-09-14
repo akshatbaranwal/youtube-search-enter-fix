@@ -1,9 +1,13 @@
 # Dependencies
 node_modules/
 
-# Build outputs
+# Build output
+dist/
+
+# Package files
 *.zip
 *.xpi
+*.crx
 
 # OS files
 .DS_Store
@@ -15,9 +19,14 @@ Thumbs.db
 *.swp
 *.swo
 
-# Generated icons (keep only SVG source)
-icons/*.png
-
 # Temporary files
 *.tmp
 *.log
+
+# Environment files
+.env
+.env.local
+
+# Cache
+.cache/
+.npm/

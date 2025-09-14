@@ -1,6 +1,8 @@
 # YouTube Search Enter Fix
 
-A Firefox/Zen Browser extension that fixes YouTube's search behavior by making the Enter key properly trigger search instead of selecting autocomplete suggestions.
+A cross-browser extension that fixes YouTube's search behavior by making the Enter key properly trigger search instead of selecting autocomplete suggestions. Supports Firefox, Chrome, Edge, and other Chromium-based browsers.
+
+> **Note**: This extension uses a clean, single-method approach that works identically across all supported browsers.
 
 ## Problem This Solves
 
@@ -16,59 +18,156 @@ When typing in YouTube's search box, pressing Enter often selects an autocomplet
 
 ## Installation
 
-### From Firefox Add-ons Store (Recommended)
+### From Extension Stores (Recommended)
+
+#### Firefox / Zen Browser
 1. Visit the extension page on [Firefox Add-ons](#) (link coming soon)
 2. Click "Add to Firefox"
 3. The extension will start working automatically on YouTube
 
+#### Chrome / Chromium Browsers
+1. Visit the extension page on [Chrome Web Store](#) (link coming soon)
+2. Click "Add to Chrome"
+3. The extension will start working automatically on YouTube
+
+#### Microsoft Edge
+1. Visit the extension page on [Edge Add-ons](#) (link coming soon)
+2. Click "Get"
+3. The extension will start working automatically on YouTube
+
 ### Manual Installation (Development)
-1. Clone this repository
+
+#### Firefox / Zen Browser
+1. Clone this repository and build: `npm install && npm run build:firefox`
 2. Open Firefox/Zen Browser
 3. Navigate to `about:debugging`
 4. Click "This Firefox" (or "This Zen Browser")
 5. Click "Load Temporary Add-on"
-6. Select the `manifest.json` file from this project
+6. Select the `manifest.json` file from `dist/firefox/`
+
+#### Chrome / Chromium Browsers
+1. Clone this repository and build: `npm install && npm run build:chrome`
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable "Developer mode" (toggle in top right)
+4. Click "Load unpacked"
+5. Select the `dist/chrome/` directory
+
+#### Microsoft Edge
+1. Clone this repository and build: `npm install && npm run build:edge`
+2. Open Edge and navigate to `edge://extensions/`
+3. Enable "Developer mode" (toggle in left sidebar)
+4. Click "Load unpacked"
+5. Select the `dist/edge/` directory
 
 ## Building from Source
+
+### Prerequisites
+- Node.js 14.0.0 or higher
+- npm
+
+### Quick Start
+```bash
+# Install dependencies
+npm install
+
+# Build for all browsers
+npm run build
+
+# Extensions will be in dist/ directory:
+# - dist/youtube-search-fix-firefox.zip
+# - dist/youtube-search-fix-chrome.zip
+# - dist/youtube-search-fix-edge.zip
+```
+
+### Build Commands
+```bash
+# Build for all browsers
+npm run build
+
+# Build for specific browser
+npm run build:firefox
+npm run build:chrome
+npm run build:edge
+
+# Watch mode (auto-rebuild on changes)
+npm run watch
+
+# Clean build artifacts
+npm run clean
+```
 
 ### Generate Icons
 If you need to regenerate the icons:
 ```bash
-cd icons
+cd src/assets/icons
 ./generate-icons.sh  # Requires ImageMagick
 ```
 
-### Package for Distribution
-```bash
-npm run build  # Creates youtube-search-enter-fix.zip
-```
+### Build Output
+Built extensions are created in the `dist/` directory:
+- `dist/firefox/` - Firefox extension files
+- `dist/chrome/` - Chrome extension files
+- `dist/edge/` - Edge extension files
+- `dist/youtube-search-fix-[browser].zip` - Packaged extensions ready for distribution
+
+## How It Works
+
+The extension intercepts the Enter key in YouTube's search box and triggers a proper form submission instead of allowing YouTube's autocomplete to take over. It uses a clean, cross-browser compatible approach that:
+
+1. Detects Enter key press in the search input
+2. Prevents the default autocomplete selection behavior
+3. Creates a temporary hidden submit button inside the form
+4. Triggers form submission using the native `requestSubmit()` API
+5. Cleans up immediately after submission
 
 ## Development
 
 ### Project Structure
 ```
 youtube-search-enter-fix/
-├── manifest.json      # Extension manifest
-├── content.js         # Main content script
-├── icons/            # Extension icons
-│   ├── icon.svg      # Source SVG icon
-│   └── icon-*.png    # Generated PNG icons
-├── README.md         # This file
-├── LICENSE           # MIT License
-└── package.json      # NPM package info
+├── src/
+│   ├── core/
+│   │   └── content.js        # Main content script (shared)
+│   ├── manifests/
+│   │   ├── manifest.firefox.json  # Firefox-specific manifest
+│   │   ├── manifest.chrome.json   # Chrome-specific manifest
+│   │   └── manifest.edge.json     # Edge-specific manifest
+│   └── assets/
+│       └── icons/            # Extension icons
+├── dist/                     # Build output (gitignored)
+├── scripts/
+│   └── build.js              # Build script for all browsers
+├── README.md                 # This file
+├── LICENSE                   # MIT License
+└── package.json              # NPM package info
 ```
 
 ### Debug Mode
-To enable debug logging, edit `content.js` and set:
+To enable debug logging, edit `src/core/content.js` and set:
 ```javascript
 const DEBUG = true;
 ```
 
+Then rebuild and reload the extension. Check the browser console on YouTube for debug messages prefixed with `[YouTube Search Enter Fix]`.
+
 ## Browser Compatibility
 
+### Fully Supported
 - Firefox 109.0+
+- Chrome 88+
+- Microsoft Edge 88+
 - Zen Browser (all versions)
-- Other Firefox-based browsers
+- Brave Browser
+- Vivaldi
+- Opera 74+
+- Other Chromium-based browsers (88+)
+
+### Technical Details
+- Uses Manifest V3 for modern browser compatibility
+- Single codebase for all browsers (no browser-specific logic needed)
+- Minimal permissions required (no host permissions needed)
+- Lightweight implementation (~200 lines of code)
+- Works with YouTube's dynamic single-page application architecture
 
 ## Privacy
 
